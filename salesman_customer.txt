@@ -1,0 +1,62 @@
+****************************
+										Create DataBase
+****************************
+
+- create database Sales_db;
+
+****************************
+										Create Table
+****************************
+
+	
+    use Sales_db;
+
+   create table Customer(customer_id int PRIMARY KEY,customer_name varchar(30),city varchar(40),grade int,salesman_id int,FOREIGN KEY(salesman_id) REFERENCES   Salesman(salesman_id));
+
+   create table Salesman(salesman_id int PRIMARY KEY,name varchar(30),city varchar(50),commission decimal(5,2));
+
+
+  ****************************
+										Insert Data Into Table
+****************************
+
+
+   use Sales_db;
+
+ insert into Customer VALUES(3002,"Nick Rimando","New York",100,5001), 
+ (3007,"Brad Davis","New York",100,5001),
+ (3005,"Graham Zusi","California",200,5002),
+ (3008,"Julian Green","London",300,5002), 
+ (3004,"Fabian Johnson","Paris",300,5006), 
+ (3009,"Geoff Cameron","Berlin",100,5003), 
+ (3003,"Jozy Altidor","Moscow",200,5007),
+  (3001,"Brad Guzan","London",' ',5005);
+
+
+   insert into salesman values(5001,"James Hoog","New York",0.15),
+   (5002,"James Hoog","Paris",0.13),
+   (5005,"Nail Knite","London",0.11),
+   (5006,"Pit Alex","Paris",0.14),
+   (5007,"Mc Lyon","Rome",0.13),
+   (5003,"Lauson Hen","San Jose",0.12);
+
+
+  ****************************
+										Join Query
+****************************
+
+
+
+  select c.customer_name,c.city,s.name,s.commission from Customer c join Salesman s where c.salesman_id=s.salesman_id;
+
+
+customer_name  		 city   		name 		 commission
+
+Brad Guzan		London		Nail Knite		0.11
+Nick Rimando		New York		James Hoog	0.15
+Jozy Altidor		Moscow		Mc Lyon		0.13
+Fabian Johnson	Paris			Pit Alex		0.14
+Graham Zusi		California		James Hoog	0.13
+Brad Davis			New York		James Hoog	0.15
+Julian Green		London		James Hoog	0.13
+Geoff Cameron	Berlin			Lauson Hen	0.12
